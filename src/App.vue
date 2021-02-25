@@ -2,7 +2,7 @@
 <div class="hidden"></div>
 <div id="editor" ref="newEditorRef" class="toast-ui-editor container mx-auto"></div>
 <div v-on:click="write">제출</div>
-<div class="viewer hidden"></div>
+<div class="viewer-script hidden"></div>
 <div id="viewer" ref="newViewRef" class="toast-ui-viewer container mx-auto"></div>
 </template>
 
@@ -23,7 +23,7 @@ export default defineComponent({
    function write(){
   const editor = $('.toast-ui-editor').data('data-toast-editor');
 	const body = editor.getMarkdown().trim();
-  $('.viewer').text(body);
+  $('.viewer-script').text(body);
   EditorViewer__init();
     }
 
@@ -43,13 +43,12 @@ export default defineComponent({
     }
   },
   mounted(){
-  const newEditorRef = ref();
-  const newViewRef = ref();
+  
 
 function Editor__init() {
   $('.toast-ui-editor').each(function(index, node) {
 	  
-    var initialValue = $(node).html().trim().replace(/t-script/gi, 'script');
+    var initialValue = $(node).prev().html().trim().replace(/t-script/gi, 'script');
     var editor = new Editor({
       el: node,
       previewStyle: false,
@@ -74,10 +73,6 @@ function EditorViewer__init() {
 }
 EditorViewer__init();
 
-return{
-  newEditorRef,
-  newViewRef
-}
 
 
   }
