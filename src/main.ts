@@ -1,4 +1,26 @@
 import { createApp } from 'vue'
+import { createRouter, createWebHistory } from 'vue-router'
 import App from './App.vue'
+import test from './components/test.vue'
 import './index.css'
-createApp(App).mount('#app')
+
+const routes = [
+  {
+    path:'/list',
+    component: test,
+    props: (route:any) => ({ boardId: route.query.boardId })
+  }
+];
+
+const router = createRouter({
+  history : createWebHistory(),
+  routes
+})
+
+const app = createApp(App);
+
+
+
+app.use(router);
+
+app.mount('#app');
