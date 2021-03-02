@@ -63,9 +63,9 @@ function Editor__init() {
     var initialValue = $(node).prev().html().trim().replace(/t-script/gi, 'script');
     var editor = new Editor({
       el: node,
-      previewStyle: false,
+      previewStyle: undefined,
       initialValue: initialValue,
-      height :500
+      height: 400
     });
     $(node).data('data-toast-editor', editor);
   });
